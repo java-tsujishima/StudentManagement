@@ -12,27 +12,36 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
-}
 
-repositories {
-	mavenCentral()
-}
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//便利機能
-	implementation 'org.apache.commons:commons-lang3:3.14.0'
-    //MySQLドライバ
-	runtimeOnly 'com.mysql:mysql-connector-j'
+	repositories {
+		mavenCentral()
+	}
 
-	//MyBatis
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		//便利機能
+		implementation 'org.apache.commons:commons-lang3:3.14.0'
+		//Lombok
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		//MySQLドライバ
+		runtimeOnly 'com.mysql:mysql-connector-j'
 
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
+		//MyBatis
+		implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
-tasks.named('test') {
-	useJUnitPlatform()
+		providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
 }
