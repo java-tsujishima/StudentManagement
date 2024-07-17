@@ -1,6 +1,6 @@
-package StudentManagement.demo;
+package StudentManagement.demo.data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,7 @@ public class Students_courses {
   private String id;
   private String studentId;
   private String courseName;
-  private Timestamp courseStartAt;
-  private Timestamp courseEndAt;
+  private LocalDate courseStartAt;
+  private LocalDate courseEndAt;
 
 }
