@@ -53,4 +53,5 @@ java {
 	tasks.named('test') {
 		useJUnitPlatform()
 	}
+
 }
