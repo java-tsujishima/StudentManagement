@@ -1,12 +1,13 @@
 package StudentManagement.demo.service;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import StudentManagement.demo.controller.converter.StudentConverter;
 import StudentManagement.demo.data.Student;
 import StudentManagement.demo.data.StudentCourse;
+import StudentManagement.demo.domain.StudentDetail;
 import StudentManagement.demo.repository.StudentRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,32 +18,37 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class StudentServiceTest {
+class UpdateStudentTest {
 
   @Mock
-  private  StudentRepository repository;
+  private StudentRepository repository;
 
   @Mock
   private StudentConverter converter;
 
+  @Mock
   private StudentService sut;
 
   @BeforeEach
-  void before(){
+  void before() {
     sut = new StudentService(repository, converter);
   }
 
+
   @Test
-  void 受講生詳細の一覧検索＿リポジトリとコンバーターの処理が適切に呼び出せていること(){
-    List<Student> studentList = new ArrayList<>();
+  void 受講生詳細の更新_リポジトリとコンバーターの処理が適切に呼び出せていること() {
+    StudentDetail studentDetail = new StudentDetail();
+    Student student = new Student();
     List<StudentCourse> studentCourseList = new ArrayList<>();
-    when(repository.search()).thenReturn(studentList);
-    when(repository.searchStudentsCourseList()).thenReturn(studentCourseList);
 
-    sut.searchStudentList();
+    studentDetail.setStudent(student);
+    studentDetail.setStudentCourseList(studentCourseList);
 
-    verify(repository, times(1)).search();
-    verify(repository, times(1)).searchStudentsCourseList();
-    verify(converter, times(1)).convertStudentDetails(studentList, studentCourseList);
+    sut.updateStudent(studentDetail);
+
+    verify(repository, times(1)).updateStudent(student);
+    studentCourseList.forEach(studentCourse -> {
+      verify(repository, times(1)).updateStudentCourse(studentCourse);
+    });
   }
 }

@@ -17,14 +17,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class StudentServiceTest {
+class SearchStudentTest {
 
   @Mock
-  private  StudentRepository repository;
+  private StudentRepository repository;
 
   @Mock
   private StudentConverter converter;
 
+  @Mock
   private StudentService sut;
 
   @BeforeEach
@@ -32,17 +33,20 @@ class StudentServiceTest {
     sut = new StudentService(repository, converter);
   }
 
+
   @Test
-  void 受講生詳細の一覧検索＿リポジトリとコンバーターの処理が適切に呼び出せていること(){
-    List<Student> studentList = new ArrayList<>();
+  void 受講生検索の単一検索_リポジトリとコンバーターの処理が適切に呼び出せていること() {
+    String studentId = "1";
+    Student student = new Student();
+    student.setId(studentId);
     List<StudentCourse> studentCourseList = new ArrayList<>();
-    when(repository.search()).thenReturn(studentList);
-    when(repository.searchStudentsCourseList()).thenReturn(studentCourseList);
 
-    sut.searchStudentList();
+    when(repository.searchStudent(studentId)).thenReturn(student);
+    when(repository.searchStudentCourse(studentId)).thenReturn(studentCourseList);
 
-    verify(repository, times(1)).search();
-    verify(repository, times(1)).searchStudentsCourseList();
-    verify(converter, times(1)).convertStudentDetails(studentList, studentCourseList);
+    sut.searchStudent(studentId);
+
+    verify(repository, times(1)).searchStudent(studentId);
+    verify(repository, times(1)).searchStudentCourse(studentId);
   }
 }
