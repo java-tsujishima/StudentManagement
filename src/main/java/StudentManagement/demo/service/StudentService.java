@@ -54,7 +54,7 @@ public class StudentService {
    * 受講生詳細の登録を行います
    * 受講生と受講生コース情報を個別に登録し、受講生コース情報には受講生情報には受講生情報を紐づける値とコース開始日、終了日を設定
    * @param studentDetail　受講生詳細
-   * @return　登録情報会お付与した受講生詳細
+   * @return　登録情報を付与した受講生詳細
    */
 
   @Transactional
