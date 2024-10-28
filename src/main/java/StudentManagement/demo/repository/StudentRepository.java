@@ -27,8 +27,8 @@ public interface StudentRepository {
    * @param id　受講生ID
    * @return　受講生
    */
+  @Select("SELECT * FROM students WHERE id = #{id}")
   Student searchStudent(String id);
-
   /**
    * 受講生のコース情報の全件検索を行います。
    * @return　受講生のコース情報（全件）

@@ -43,8 +43,8 @@ public class StudentController {
 
   @Operation(summary = "一覧検索", description = "受講生の一覧検索をします。")
   @GetMapping("/studentList")
-  public List<StudentDetail> getStudentList() throws TestException {
-    throw new TestException("現在このAPIは利用できません。URLは「studentList」ではなく「students」を利用してください。");
+  public List<StudentDetail> getStudentList() {
+    return service.searchStudentList();
   }
   /**
    * 受講生検索です。IDに紐ずく受講生情報を取得した後、その受講生に紐ずく受講生コース情報を取得して設定します。
