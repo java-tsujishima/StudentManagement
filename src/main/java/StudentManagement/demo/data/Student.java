@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 public class Student {
 
-  @NotBlank
   @Pattern(regexp = "^\\d+$", message = "数字のみ入力するようにしてください。")
   private String id;
 
@@ -38,4 +37,21 @@ public class Student {
   @NotBlank
   private String remark;
   private boolean isDeleted;
+
+  public Student() {
+    this.isDeleted = false;
+  }
+
+  public Student(String id, String name, String kanaName, String nickname, String email, String area, int age, String sex, String remark) {
+    this.id = id;
+    this.name = name;
+    this.kanaName = kanaName;
+    this.nickname = nickname;
+    this.email = email;
+    this.area = area;
+    this.age = age;
+    this.sex = sex;
+    this.remark = remark;
+    this.isDeleted = false;
+  }
 }
