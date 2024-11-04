@@ -61,7 +61,7 @@ class StudentConverterTest {
 
   private static Student createStudent() {
     Student student = new Student("1", "田中", "たなか", "たなか", "tanaka@gmail.com", "東京", 34,
-        "男", "他のコースも受講中");
+        "男", "他のコースも受講中", false);
     student.setDeleted(false);
     return student;
   }

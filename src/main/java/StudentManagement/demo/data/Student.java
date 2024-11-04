@@ -3,11 +3,18 @@ package StudentManagement.demo.data;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 public class Student {
 
   @Pattern(regexp = "^\\d+$", message = "数字のみ入力するようにしてください。")
@@ -36,22 +43,8 @@ public class Student {
 
   @NotBlank
   private String remark;
-  private boolean isDeleted;
 
-  public Student() {
-    this.isDeleted = false;
-  }
+  @Builder.Default
+  private boolean isDeleted = false;
 
-  public Student(String id, String name, String kanaName, String nickname, String email, String area, int age, String sex, String remark) {
-    this.id = id;
-    this.name = name;
-    this.kanaName = kanaName;
-    this.nickname = nickname;
-    this.email = email;
-    this.area = area;
-    this.age = age;
-    this.sex = sex;
-    this.remark = remark;
-    this.isDeleted = false;
-  }
 }

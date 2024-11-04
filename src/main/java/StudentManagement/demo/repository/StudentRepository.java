@@ -20,6 +20,7 @@ public interface StudentRepository {
    * 受講生の全件検索を行います。
    * @return　受講生一覧（全件）
    */
+  @Select("SELECT * FROM students")
   List<Student> search();
 
   /**

@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS students
 (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     kana_name VARCHAR(50) NOT NULL,
     nickname VARCHAR(50),
@@ -8,15 +8,15 @@ CREATE TABLE IF NOT EXISTS students
     area VARCHAR(50),
     age INT,
     sex VARCHAR(10),
-    remake VARCHAR(255),
+    remark VARCHAR(255),
     is_deleted boolean
 );
 
 CREATE TABLE IF NOT EXISTS students_courses
 (
-     id INT PRIMARY KEY,
-     student_id VARCHAR(36) NOT NULL,
-     course_name(50) NOT NULL,
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     student_id INT NOT NULL,
+     course_name VARCHAR(50) NOT NULL,
      course_start_at TIMESTAMP,
-     course_end_at TIMESTAMP,
+     course_end_at TIMESTAMP
 );
