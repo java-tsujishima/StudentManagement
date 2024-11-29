@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Component;
 
+@Component
 class StudentConverterTest {
 
   private StudentConverter sut;

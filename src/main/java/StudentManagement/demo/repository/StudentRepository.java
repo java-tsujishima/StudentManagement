@@ -1,11 +1,13 @@
 package StudentManagement.demo.repository;
 
+import StudentManagement.demo.data.CourseStatus;
 import StudentManagement.demo.data.Student;
 import StudentManagement.demo.data.StudentCourse;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -66,4 +68,15 @@ public interface StudentRepository {
 
   @Update("update students_courses set course_name = #{courseName} where id = #{id}")
   void updateStudentCourse(StudentCourse studentCourse);
+
+  @Select("select * from course_status where id = #{id}")
+  CourseStatus searchCourseStatusById(int id);
+
+  @Insert("INSERT INTO course_status (student_course_id, status) VALUES (#{studentCourseId}, #{status})")
+  @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+  void registerCourseStatus(int studentCourseId, String status);
+
+  @Update("UPDATE course_status SET status = #{status} WHERE student_course_id = #{studentCourseId}")
+  void updateCourseStatus(int studentCourseId, String status);
+
 }

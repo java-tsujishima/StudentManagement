@@ -2,7 +2,6 @@ package StudentManagement.demo.repository;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import StudentManagement.demo.data.Student;
 import StudentManagement.demo.data.StudentCourse;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 @MybatisTest
 class StudentRepositoryTest {
 
@@ -18,13 +18,13 @@ class StudentRepositoryTest {
   private StudentRepository sut;
 
   @Test
-  void 受講生の全件検索ができること(){
+  void 受講生の全件検索ができること() {
     List<Student> actual = sut.search();
     assertThat(actual.size()).isEqualTo(6);
   }
 
   @Test
-  void 受講生の登録が行えること(){
+  void 受講生の登録が行えること() {
     Student student = new Student();
     student.setName("田中");
     student.setKanaName("たなか");
@@ -44,7 +44,7 @@ class StudentRepositoryTest {
   }
 
   @Test
-  void 受講生IDによる検索が行えること() {
+  void 受講生IDで検索が行えること() {
     String studentId = "1";
     Student actual = sut.searchStudent(studentId);
     assertThat(actual).isNotNull();

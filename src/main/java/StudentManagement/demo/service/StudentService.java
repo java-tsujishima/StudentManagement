@@ -1,6 +1,7 @@
 package StudentManagement.demo.service;
 
 import StudentManagement.demo.controller.converter.StudentConverter;
+import StudentManagement.demo.data.CourseStatus;
 import StudentManagement.demo.data.Student;
 import StudentManagement.demo.data.StudentCourse;
 import StudentManagement.demo.domain.StudentDetail;
@@ -43,7 +44,9 @@ public class StudentService {
   public StudentDetail searchStudent(String id) {
     Student student = repository.searchStudent(id);
     List<StudentCourse> studentsCourse = repository.searchStudentCourse(student.getId());
-    return new StudentDetail(student, studentsCourse);
+    int studentCourseId = Integer.parseInt(id);
+    CourseStatus courseStatus = repository.searchCourseStatusById(studentCourseId);
+    return new StudentDetail(student, studentsCourse, courseStatus);
   }
 
   public List<StudentCourse> serchStudentCourseList() {
@@ -93,4 +96,22 @@ public class StudentService {
     studentDetail.getStudentCourseList()
         .forEach(studentCourse -> repository.updateStudentCourse(studentCourse));
   }
+
+  @Transactional
+  public CourseStatus searchCourseStatus(int id) {
+    return repository.searchCourseStatusById(id);
+  }
+
+  @Transactional
+  public void registerCourseStatus(CourseStatus courseStatus) {
+    repository.registerCourseStatus(courseStatus.getStudentCourseId(), courseStatus.getStatus());
+  }
+
+  @Transactional
+  public void updateCourseStatus(int studentCourseId, CourseStatus courseStatus) {
+    repository.updateCourseStatus(studentCourseId, courseStatus.getStatus());
+  }
+
 }
+
+

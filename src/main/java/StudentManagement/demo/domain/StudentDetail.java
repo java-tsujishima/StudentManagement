@@ -1,5 +1,6 @@
 package StudentManagement.demo.domain;
 
+import StudentManagement.demo.data.CourseStatus;
 import StudentManagement.demo.data.Student;
 import StudentManagement.demo.data.StudentCourse;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,4 +23,7 @@ public class StudentDetail {
 
   @Valid
   private List<StudentCourse> studentCourseList;
+
+  private CourseStatus courseStatus;
+
 }
